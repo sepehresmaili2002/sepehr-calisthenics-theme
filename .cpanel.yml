@@ -1,0 +1,10 @@
+---
+# cPanel → Git Version Control → Manage → Pull or Deploy → "Deploy HEAD Commit"
+# copies the theme and the companion plugin into the live WordPress install.
+deployment:
+  tasks:
+    - export WPCONTENT=/home/nirooclu/public_html/wp-content
+    - /bin/mkdir -p $WPCONTENT/themes/sepehr
+    - /bin/mkdir -p $WPCONTENT/plugins/sepehr-seo-geo
+    - /bin/cp -R theme/sepehr/. $WPCONTENT/themes/sepehr/
+    - /bin/cp -R plugin/sepehr-seo-geo/. $WPCONTENT/plugins/sepehr-seo-geo/
