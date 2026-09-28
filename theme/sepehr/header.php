@@ -21,11 +21,7 @@ defined( 'ABSPATH' ) || exit;
 <header class="site-header">
 	<div class="shell header-row">
 		<a class="brand" href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
-			<?php if ( has_custom_logo() ) : ?>
-				<?php echo wp_get_attachment_image( get_theme_mod( 'custom_logo' ), 'medium', false, array( 'class' => 'brand-logo', 'alt' => sepehr_fact( 'site_name', get_bloginfo( 'name' ) ) ) ); ?>
-			<?php else : ?>
-				<span class="brand-mark" lang="en">SEPEHR ESMAEILY</span>
-			<?php endif; ?>
+			<span class="brand-mark" lang="en">SEPEHR ESMAEILY</span>
 			<span class="brand-sub"><?php echo esc_html( sepehr_fact( 'job_title', get_bloginfo( 'description' ) ) ); ?></span>
 		</a>
 
@@ -33,7 +29,7 @@ defined( 'ABSPATH' ) || exit;
 		<nav id="site-nav" class="site-nav" aria-label="<?php esc_attr_e( 'منوی اصلی', 'sepehr' ); ?>">
 			<?php
 			wp_nav_menu( array(
-				'theme_location' => 'primary',
+				'theme_location' => 'sepehr_primary',
 				'container'      => false,
 				'menu_class'     => 'nav-list',
 				'depth'          => 1,

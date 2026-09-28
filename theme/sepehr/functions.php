@@ -7,7 +7,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'SEPEHR_VERSION', '1.0.0' );
+define( 'SEPEHR_VERSION', '1.0.1' );
 
 require_once __DIR__ . '/inc/settings.php';
 require_once __DIR__ . '/inc/customizer.php';
@@ -20,16 +20,16 @@ add_action( 'after_setup_theme', function () {
 	add_theme_support( 'post-thumbnails' );
 	add_theme_support( 'responsive-embeds' );
 	add_theme_support( 'html5', array( 'search-form', 'comment-form', 'comment-list', 'gallery', 'caption', 'style', 'script', 'navigation-widgets' ) );
-	add_theme_support( 'custom-logo', array( 'height' => 80, 'width' => 320, 'flex-width' => true, 'flex-height' => true ) );
 
 	add_theme_support( 'woocommerce' );
 	add_theme_support( 'wc-product-gallery-zoom' );
 	add_theme_support( 'wc-product-gallery-lightbox' );
 	add_theme_support( 'wc-product-gallery-slider' );
 
+	// Own location names, so menus from the previous theme are not auto-assigned here.
 	register_nav_menus( array(
-		'primary' => __( 'منوی اصلی', 'sepehr' ),
-		'footer'  => __( 'منوی فوتر', 'sepehr' ),
+		'sepehr_primary' => __( 'منوی اصلی (قالب سپهر)', 'sepehr' ),
+		'sepehr_footer'  => __( 'منوی فوتر (قالب سپهر)', 'sepehr' ),
 	) );
 
 	add_image_size( 'sepehr-hero', 900, 1100, true );
@@ -70,6 +70,20 @@ add_action( 'wp_head', function () {
 	}
 	printf( '<meta name="theme-color" content="%s">' . "\n", '#0E0E10' );
 }, 1 );
+
+/**
+ * The front page is always this theme's front-page.php. Page builders (Elementor's
+ * "Elementor Full Width" / "Canvas" templates) otherwise swap in the old page design.
+ */
+add_filter( 'template_include', function ( $template ) {
+	if ( is_front_page() && ! is_home() ) {
+		$front = locate_template( 'front-page.php' );
+		if ( $front ) {
+			return $front;
+		}
+	}
+	return $template;
+}, 999 );
 
 /**
  * WooCommerce: wrap its pages in the theme layout instead of its default wrappers.

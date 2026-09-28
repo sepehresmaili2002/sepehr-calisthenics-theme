@@ -21,7 +21,7 @@ $tg = sepehr_fact( 'telegram' );
 			<h2 class="footer-title"><?php esc_html_e( 'دسترسی سریع', 'sepehr' ); ?></h2>
 			<?php
 			wp_nav_menu( array(
-				'theme_location' => 'footer',
+				'theme_location' => 'sepehr_footer',
 				'container'      => false,
 				'menu_class'     => 'footer-list',
 				'depth'          => 1,
