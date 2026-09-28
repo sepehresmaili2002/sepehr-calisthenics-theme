@@ -123,8 +123,6 @@ html:not(.js) .site-nav{position:static;order:4;width:100%}
 .path-card{display:flex;flex-direction:column;gap:12px;padding:28px;border-radius:var(--radius);background:var(--surface);border:1px solid var(--line);color:var(--text);text-decoration:none;min-height:240px}
 .path-card:hover{border-color:var(--gold);color:var(--text)}
 .path-card--gold{border-color:var(--gold)}
-.path-card--vip{border-color:var(--line-gold);background:#18160F}
-.path-card--vip:hover{border-color:var(--gold)}
 .path-title{font-size:clamp(22px,2.6vw,28px);font-weight:900;line-height:1.5}
 .path-text{color:var(--muted)}
 .path-more{margin-top:auto;font-weight:700}

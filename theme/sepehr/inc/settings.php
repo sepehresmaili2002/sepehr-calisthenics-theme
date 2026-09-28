@@ -42,7 +42,6 @@ function sepehr_default_nav_items() {
 	return array(
 		array( 'url' => home_url( '/#course' ), 'label' => __( 'دوره آنلاین', 'sepehr' ) ),
 		array( 'url' => home_url( '/#class' ), 'label' => __( 'کلاس حضوری تهران', 'sepehr' ) ),
-		array( 'url' => home_url( '/#vip' ), 'label' => __( 'تمرین خصوصی VIP', 'sepehr' ) ),
 		array( 'url' => home_url( '/#what' ), 'label' => __( 'کلیستنیکس چیست؟', 'sepehr' ) ),
 		array( 'url' => home_url( '/#coach' ), 'label' => __( 'درباره مربی', 'sepehr' ) ),
 		array( 'url' => home_url( '/#faq' ), 'label' => __( 'سؤالات متداول', 'sepehr' ) ),

@@ -80,10 +80,6 @@ function sepehr_llms_txt() {
 	}
 	$out[] = '- ویژه ' . $f['class_audience'] . '. رزرو و ثبت‌نام: ' . $f['phone_display'] . ' (' . $f['phone_e164'] . ')';
 	$out[] = '';
-	$out[] = '## ' . $f['vip_name'];
-	$out[] = '- ' . $f['vip_summary'];
-	$out[] = '- محدوده: فقط ' . $f['vip_area_label'] . '. هماهنگی: ' . $f['phone_display'];
-	$out[] = '';
 	$out[] = '## لینک‌ها';
 	$out[] = '- [صفحه اصلی](' . $home . ')';
 	$out[] = '- [کلیستنیکس چیست؟](' . $home . '#what)';

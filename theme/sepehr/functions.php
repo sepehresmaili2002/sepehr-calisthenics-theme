@@ -7,7 +7,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'SEPEHR_VERSION', '1.0.3' );
+define( 'SEPEHR_VERSION', '1.0.4' );
 
 require_once __DIR__ . '/inc/settings.php';
 require_once __DIR__ . '/inc/customizer.php';

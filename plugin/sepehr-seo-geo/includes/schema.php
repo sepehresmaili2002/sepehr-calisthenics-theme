@@ -141,31 +141,6 @@ function sepehr_schema_course() {
 }
 
 /**
- * One-on-one VIP training at the client's own location (Tehran districts 1–3, in person only).
- *
- * @return array<string,mixed>
- */
-function sepehr_schema_vip() {
-	$f = sepehr_facts();
-	return array(
-		'@type'       => 'Service',
-		'@id'         => sepehr_schema_id( 'vip' ),
-		'name'        => $f['vip_name'],
-		'serviceType' => 'تمرین خصوصی کلیستنیکس (Personal Training)',
-		'description' => $f['vip_summary'],
-		'provider'    => array( '@id' => sepehr_schema_id( 'person' ) ),
-		'areaServed'  => array_map( function ( $area ) {
-			return array( '@type' => 'AdministrativeArea', 'name' => $area );
-		}, $f['vip_areas'] ),
-		'availableChannel' => array(
-			'@type'        => 'ServiceChannel',
-			'servicePhone' => array( '@type' => 'ContactPoint', 'telephone' => $f['phone_e164'] ),
-		),
-		'url'         => home_url( '/#vip' ),
-	);
-}
-
-/**
  * Full URL of an image chosen in the theme's Customizer.
  *
  * @param string $mod
@@ -219,9 +194,8 @@ if ( defined( 'RANK_MATH_VERSION' ) || class_exists( 'RankMath' ) ) {
 			unset( $data['richSnippet'], $data['place'] );
 			$data['sepehrClass']  = sepehr_schema_gym();
 			$data['sepehrCourse'] = sepehr_schema_course();
-			$data['sepehrVip']    = sepehr_schema_vip();
 			if ( isset( $data['WebPage'] ) && is_array( $data['WebPage'] ) ) {
-				$data['WebPage']['about']    = array( array( '@id' => sepehr_schema_id( 'course' ) ), array( '@id' => sepehr_schema_id( 'class' ) ), array( '@id' => sepehr_schema_id( 'vip' ) ) );
+				$data['WebPage']['about']    = array( array( '@id' => sepehr_schema_id( 'course' ) ), array( '@id' => sepehr_schema_id( 'class' ) ) );
 				$data['WebPage']['mainEntity'] = array( '@id' => $person_id );
 			}
 		}
@@ -243,7 +217,6 @@ if ( defined( 'RANK_MATH_VERSION' ) || class_exists( 'RankMath' ) ) {
 		if ( is_front_page() ) {
 			$graph[] = sepehr_schema_gym();
 			$graph[] = sepehr_schema_course();
-			$graph[] = sepehr_schema_vip();
 		}
 		echo '<script type="application/ld+json">' . wp_json_encode( array( '@context' => 'https://schema.org', '@graph' => $graph ), JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES ) . "</script>\n";
 	}, 20 );
