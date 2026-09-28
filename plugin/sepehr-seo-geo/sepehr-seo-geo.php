@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Sepehr SEO & GEO
  * Description: داده‌های ساختاریافته (Schema)، دسترسی ربات‌های هوش مصنوعی، فایل llms.txt، عنوان و توضیحات صفحه اصلی و بهینه‌سازی سرعت برای سایت سپهر اسماعیلی. اطلاعات کسب‌وکار فقط در includes/facts.php تعریف می‌شود.
- * Version: 1.0.3
+ * Version: 1.0.4
  * Author: Sepehr Esmaeily
  * Requires at least: 6.3
  * Requires PHP: 7.4
@@ -14,7 +14,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'SEPEHR_SEO_GEO_VERSION', '1.0.3' );
+define( 'SEPEHR_SEO_GEO_VERSION', '1.0.4' );
 
 require_once __DIR__ . '/includes/facts.php';
 require_once __DIR__ . '/includes/meta.php';
