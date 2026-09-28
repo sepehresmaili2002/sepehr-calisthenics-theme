@@ -63,7 +63,7 @@ function sepehr_llms_txt() {
 	$out[] = '';
 	$out[] = '## مربی';
 	$out[] = sprintf( '- %s، %s؛ %s سال مربیگری رسمی و %s سال سابقه ورزشی (از %s سالگی).', $f['person_name'], $f['credential'], $f['coaching_years'], $f['sport_years'], $f['sport_since_age'] );
-	$out[] = '- سابقه: کاراته با ' . $f['awards'] . '؛ کمک‌مربی از نوجوانی؛ پارکور و کلیستنیکس.';
+	$out[] = '- سابقه: کاراته از کودکی، کمک‌مربی از نوجوانی، سپس پارکور؛ کلیستنیکس همیشه محور اصلی تمرین‌هایش بوده.';
 	$out[] = '- ' . $f['students_label'] . ' شاگرد حضوری موفق.';
 	$out[] = '';
 	$out[] = '## دوره آنلاین: ' . $f['course_name'];
@@ -79,6 +79,9 @@ function sepehr_llms_txt() {
 		$out[] = sprintf( '- %s (%s): %s، %s', $s['name'], $s['label'], $s['days_label'], $s['time_label'] );
 	}
 	$out[] = '- ویژه ' . $f['class_audience'] . '. رزرو و ثبت‌نام: ' . $f['phone_display'] . ' (' . $f['phone_e164'] . ')';
+	$out[] = '';
+	$out[] = '## ' . $f['vip_name'];
+	$out[] = '- ' . $f['vip_summary'] . ' هماهنگی: ' . $f['phone_display'];
 	$out[] = '';
 	$out[] = '## لینک‌ها';
 	$out[] = '- [صفحه اصلی](' . $home . ')';

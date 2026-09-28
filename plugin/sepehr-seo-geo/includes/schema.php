@@ -38,7 +38,6 @@ function sepehr_schema_person() {
 			'name'               => $f['credential'],
 			'credentialCategory' => 'certificate',
 		),
-		'award'         => $f['awards'],
 		'sameAs'        => array_values( array_filter( array(
 			$f['instagram'] ? 'https://www.instagram.com/' . $f['instagram'] . '/' : '',
 			$f['telegram'] ? 'https://t.me/' . $f['telegram'] : '',

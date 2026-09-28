@@ -27,15 +27,7 @@ defined( 'ABSPATH' ) || exit;
 
 		<button class="nav-btn" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="<?php esc_attr_e( 'منو', 'sepehr' ); ?>"><?php sepehr_icon( 'menu', 26 ); ?></button>
 		<nav id="site-nav" class="site-nav" aria-label="<?php esc_attr_e( 'منوی اصلی', 'sepehr' ); ?>">
-			<?php
-			wp_nav_menu( array(
-				'theme_location' => 'sepehr_primary',
-				'container'      => false,
-				'menu_class'     => 'nav-list',
-				'depth'          => 1,
-				'fallback_cb'    => 'sepehr_fallback_menu',
-			) );
-			?>
+			<?php sepehr_menu(); ?>
 		</nav>
 
 		<div class="header-actions">

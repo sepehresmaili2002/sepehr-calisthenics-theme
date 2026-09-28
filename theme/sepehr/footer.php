@@ -19,15 +19,7 @@ $tg = sepehr_fact( 'telegram' );
 
 		<nav class="footer-links" aria-label="<?php esc_attr_e( 'دسترسی سریع', 'sepehr' ); ?>">
 			<h2 class="footer-title"><?php esc_html_e( 'دسترسی سریع', 'sepehr' ); ?></h2>
-			<?php
-			wp_nav_menu( array(
-				'theme_location' => 'sepehr_footer',
-				'container'      => false,
-				'menu_class'     => 'footer-list',
-				'depth'          => 1,
-				'fallback_cb'    => 'sepehr_fallback_menu',
-			) );
-			?>
+			<?php sepehr_menu(); ?>
 		</nav>
 
 		<div class="footer-contact">

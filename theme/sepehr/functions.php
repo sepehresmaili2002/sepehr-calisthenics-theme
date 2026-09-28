@@ -7,7 +7,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'SEPEHR_VERSION', '1.0.1' );
+define( 'SEPEHR_VERSION', '1.0.2' );
 
 require_once __DIR__ . '/inc/settings.php';
 require_once __DIR__ . '/inc/customizer.php';
@@ -26,11 +26,6 @@ add_action( 'after_setup_theme', function () {
 	add_theme_support( 'wc-product-gallery-lightbox' );
 	add_theme_support( 'wc-product-gallery-slider' );
 
-	// Own location names, so menus from the previous theme are not auto-assigned here.
-	register_nav_menus( array(
-		'sepehr_primary' => __( 'منوی اصلی (قالب سپهر)', 'sepehr' ),
-		'sepehr_footer'  => __( 'منوی فوتر (قالب سپهر)', 'sepehr' ),
-	) );
 
 	add_image_size( 'sepehr-hero', 900, 1100, true );
 	add_image_size( 'sepehr-card', 720, 480, true );
