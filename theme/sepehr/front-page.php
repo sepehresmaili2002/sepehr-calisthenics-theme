@@ -81,9 +81,9 @@ $tg          = sepehr_fact( 'telegram' );
 				<span class="path-more">روزها، ساعت‌ها و ثبت‌نام ←</span>
 			</a>
 			<a id="vip" class="path-card path-card--vip" href="tel:<?php echo esc_attr( $phone_e164 ); ?>">
-				<span class="kicker">یک‌به‌یک · اختصاصی</span>
+				<span class="kicker"><?php echo esc_html( 'یک‌به‌یک در محل شما · ' . sepehr_fact( 'vip_area_label' ) ); ?></span>
 				<span class="path-title"><?php echo esc_html( sepehr_fact( 'vip_name' ) ); ?></span>
-				<span class="path-text">جلسه‌های یک‌به‌یک با خود سپهر؛ برنامه‌ی کاملاً اختصاصی، اصلاح دقیق فرم حرکت‌ها و پیگیری نزدیک تا وقتی به هدفت برسی.</span>
+				<span class="path-text">سپهر میاد پیش خودت، توی خونه یا باشگاه شخصیت؛ جلسه‌ی یک‌به‌یک با برنامه‌ی کاملاً اختصاصی، اصلاح دقیق فرم حرکت‌ها و پیگیری نزدیک تا وقتی به هدفت برسی.</span>
 				<span class="path-more gold">هماهنگی و رزرو: <?php echo esc_html( $phone ); ?></span>
 			</a>
 		</div>
@@ -249,7 +249,7 @@ $tg          = sepehr_fact( 'telegram' );
 			</div>
 			<div class="faq-item">
 				<h3>تمرین خصوصی VIP با کلاس حضوری چه فرقی داره؟</h3>
-				<p>توی تمرین خصوصی VIP فقط خودت و مربی هستین: برنامه کاملاً برای بدن و هدف تو طراحی می‌شه و فرم تک‌تک حرکت‌هات از نزدیک اصلاح می‌شه. برای هماهنگی با <?php echo esc_html( $phone ); ?> تماس بگیر.</p>
+				<p>توی تمرین خصوصی VIP، سپهر میاد به محل خودت (خونه یا باشگاه شخصی) و فقط خودت و مربی هستین: برنامه کاملاً برای بدن و هدف تو طراحی می‌شه و فرم تک‌تک حرکت‌هات از نزدیک اصلاح می‌شه. این خدمت فقط حضوریه و فعلاً <?php echo esc_html( sepehr_fact( 'vip_area_label' ) ); ?> رو پوشش می‌ده. برای هماهنگی با <?php echo esc_html( $phone ); ?> تماس بگیر.</p>
 			</div>
 			<div class="faq-item">
 				<h3>کلاس کلیستنیکس حضوری در تهران کجاست و چه ساعتیه؟</h3>
