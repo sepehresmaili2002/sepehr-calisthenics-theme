@@ -7,7 +7,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'SEPEHR_VERSION', '1.0.4' );
+define( 'SEPEHR_VERSION', '1.0.5' );
 
 require_once __DIR__ . '/inc/settings.php';
 require_once __DIR__ . '/inc/customizer.php';
@@ -38,7 +38,12 @@ add_action( 'wp_enqueue_scripts', function () {
 	$uri = get_template_directory_uri();
 	$css = get_template_directory() . '/assets/css/main.css';
 
-	wp_enqueue_style( 'sepehr-main', $uri . '/assets/css/main.css', array(), SEPEHR_VERSION . '-' . filemtime( $css ) );
+	// Inline the (small) stylesheet: no render-blocking request before first paint.
+	$styles = (string) file_get_contents( $css ); // phpcs:ignore WordPress.WP.AlternativeFunctions -- local theme file.
+	$styles = str_replace( 'url(../fonts/', 'url(' . $uri . '/assets/fonts/', $styles );
+	wp_register_style( 'sepehr-main', false, array(), SEPEHR_VERSION );
+	wp_enqueue_style( 'sepehr-main' );
+	wp_add_inline_style( 'sepehr-main', $styles );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
@@ -64,6 +69,20 @@ add_action( 'wp_head', function () {
 		printf( '<link rel="preload" href="%s" as="font" type="font/woff2" crossorigin>' . "\n", esc_url( $fonts . $file ) );
 	}
 	printf( '<meta name="theme-color" content="%s">' . "\n", '#0E0E10' );
+
+	// Front page: start downloading the hero photo (the LCP element) right away.
+	$hero = absint( get_theme_mod( 'sepehr_hero_image', 0 ) );
+	if ( is_front_page() && $hero && wp_attachment_is_image( $hero ) ) {
+		$src    = wp_get_attachment_image_url( $hero, 'sepehr-hero' );
+		$srcset = wp_get_attachment_image_srcset( $hero, 'sepehr-hero' );
+		if ( $src ) {
+			printf(
+				'<link rel="preload" as="image" href="%1$s"%2$s imagesizes="(max-width: 700px) 100vw, 40vw" fetchpriority="high">' . "\n",
+				esc_url( $src ),
+				$srcset ? ' imagesrcset="' . esc_attr( $srcset ) . '"' : ''
+			);
+		}
+	}
 }, 1 );
 
 /**
