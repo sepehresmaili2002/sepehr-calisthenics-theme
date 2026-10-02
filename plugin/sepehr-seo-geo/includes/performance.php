@@ -37,7 +37,7 @@ add_filter( 'heartbeat_settings', function ( $settings ) {
 } );
 
 /**
- * The front page is plain theme markup: it needs none of the page-builder, shop,
+ * The front page and the landing pages are plain theme markup: it needs none of the page-builder, shop,
  * slider or form assets that other plugins enqueue site-wide. Drop them there only.
  */
 function sepehr_front_page_asset_is_foreign( $handle ) {
@@ -56,7 +56,8 @@ function sepehr_front_page_asset_is_foreign( $handle ) {
 }
 
 function sepehr_dequeue_front_page_foreign_assets() {
-	if ( ! is_front_page() || is_customize_preview() ) {
+	$own_page = is_front_page() || ( function_exists( 'sepehr_current_page_key' ) && sepehr_current_page_key() );
+	if ( ! $own_page || is_customize_preview() ) {
 		return;
 	}
 	foreach ( array( wp_styles(), wp_scripts() ) as $deps ) {

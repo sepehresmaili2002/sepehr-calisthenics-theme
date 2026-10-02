@@ -33,6 +33,16 @@ add_action( 'admin_notices', function () {
 } );
 
 /**
+ * URL of a landing page created by the companion plugin, or the front-page section.
+ *
+ * @param string $key class|course
+ * @return string
+ */
+function sepehr_landing_url( $key ) {
+	return function_exists( 'sepehr_page_url' ) ? sepehr_page_url( $key ) : home_url( '/#' . $key );
+}
+
+/**
  * Site menu (header and footer). Kept in code on purpose: WordPress would otherwise
  * auto-assign the previous theme's menus to this theme.
  *
@@ -40,8 +50,8 @@ add_action( 'admin_notices', function () {
  */
 function sepehr_default_nav_items() {
 	return array(
-		array( 'url' => home_url( '/#course' ), 'label' => __( 'دوره آنلاین', 'sepehr' ) ),
-		array( 'url' => home_url( '/#class' ), 'label' => __( 'کلاس حضوری تهران', 'sepehr' ) ),
+		array( 'url' => sepehr_landing_url( 'course' ), 'label' => __( 'دوره آنلاین', 'sepehr' ) ),
+		array( 'url' => sepehr_landing_url( 'class' ), 'label' => __( 'کلاس حضوری تهران', 'sepehr' ) ),
 		array( 'url' => home_url( '/#what' ), 'label' => __( 'کلیستنیکس چیست؟', 'sepehr' ) ),
 		array( 'url' => home_url( '/#coach' ), 'label' => __( 'درباره مربی', 'sepehr' ) ),
 		array( 'url' => home_url( '/#faq' ), 'label' => __( 'سؤالات متداول', 'sepehr' ) ),

@@ -275,3 +275,52 @@ html:not(.js) .site-nav{position:static;order:4;width:100%}
 	.brand{margin-inline-end:24px}
 	.header-row{min-height:84px}
 }
+
+/* ---------- Landing pages ---------- */
+.facts{list-style:none;margin:22px 0 0;padding:18px 20px;border:1px solid var(--line-gold);border-radius:var(--radius);display:flex;flex-direction:column;gap:10px;color:var(--text-2);font-size:15px}
+.facts li{display:flex;gap:10px;align-items:flex-start}
+.facts .icon{color:var(--gold);margin-top:5px}
+.badge-open{display:inline-block;margin:0 0 14px;padding:4px 14px;border-radius:999px;background:var(--red);color:#fff;font-size:14px;font-weight:700}
+.sub-title{margin:40px 0 20px}
+.includes--grid{display:grid;gap:12px 28px}
+.steps{list-style:none;margin:28px 0 0;padding:0;display:grid;gap:16px;counter-reset:step}
+.steps li{counter-increment:step;position:relative;display:flex;flex-direction:column;gap:6px;padding:24px 24px 24px 24px;padding-inline-start:72px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius)}
+.steps li::before{content:counter(step,persian);position:absolute;inset-inline-start:22px;top:22px;width:36px;height:36px;border-radius:999px;border:1px solid var(--gold);color:var(--gold);display:flex;align-items:center;justify-content:center;font-weight:900}
+.steps strong{font-size:18px}
+.steps span{color:var(--muted)}
+
+/* Testimonials */
+.reviews{display:grid;gap:16px;margin-top:8px}
+.review{margin:0;padding:24px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);display:flex;flex-direction:column;gap:14px}
+.review blockquote{margin:0}
+.review blockquote p{margin:0;color:var(--text-2)}
+.review blockquote p::before{content:"«";color:var(--gold)}
+.review blockquote p::after{content:"»";color:var(--gold)}
+.review figcaption{margin-top:auto;display:flex;justify-content:space-between;gap:12px;font-size:14px}
+.review figcaption span{color:var(--muted)}
+.reviews-source{margin-top:16px}
+
+/* Pre-registration */
+.register{display:grid;gap:28px;align-items:center;padding:32px 24px;border:1px solid var(--gold);border-radius:18px;background:var(--surface)}
+.lead-form-box{display:flex;flex-direction:column;gap:14px}
+.lead-form-box .field{display:flex;flex-direction:column;gap:6px}
+.lead-form-box label{font-weight:700;font-size:15px}
+.lead-form-box input[type=text],.lead-form-box input[type=tel]{min-height:52px;border-radius:10px;border:1px solid var(--line);background:var(--ink);color:var(--text);padding:0 14px;font-family:inherit;font-size:16px}
+.lead-form-box input:focus{border-color:var(--gold)}
+.lead-form-box .req{color:var(--red)}
+.hp{position:absolute!important;width:1px;height:1px;margin:-1px;padding:0;border:0;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
+.notice{margin:0;padding:12px 16px;border-radius:10px;font-weight:700}
+.notice--success{background:#14532D;color:#DCFCE7}
+.notice--error{background:#7F1D1D;color:#FEE2E2}
+
+@media (min-width:700px){
+	.reviews{grid-template-columns:repeat(2,minmax(0,1fr))}
+	.includes--grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+	.steps{grid-template-columns:repeat(2,minmax(0,1fr))}
+	.register{padding:40px}
+}
+@media (min-width:1100px){
+	.reviews{grid-template-columns:repeat(3,minmax(0,1fr))}
+	.steps{grid-template-columns:repeat(4,minmax(0,1fr))}
+	.register{grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:56px;padding:48px}
+}

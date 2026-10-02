@@ -19,8 +19,8 @@ $phone_e164  = sepehr_fact( 'phone_e164' );
 $phone       = sepehr_fact( 'phone_display' );
 $address     = sepehr_fact( 'address_display' );
 $sessions    = (array) sepehr_fact( 'sessions', array() );
-$map_url     = get_theme_mod( 'sepehr_map_url', '' );
-$map_url     = $map_url ? $map_url : 'https://www.google.com/maps/search/?api=1&query=' . rawurlencode( $address );
+$map_url     = function_exists( 'sepehr_map_url' ) ? sepehr_map_url() : '';
+$class_url   = sepehr_landing_url( 'class' );
 $guide_url   = get_theme_mod( 'sepehr_guide_url', '' );
 $lead_code   = get_theme_mod( 'sepehr_lead_shortcode', '' );
 $lead_link   = get_theme_mod( 'sepehr_lead_fallback', '' );
@@ -38,7 +38,7 @@ $tg          = sepehr_fact( 'telegram' );
 			<p class="lead">از اولین بارفیکس و شنا تا حرکت‌های حرفه‌ای، قدم‌به‌قدم با ویدیوی آموزشی و پشتیبانی مستقیم مربی. توی خونه، پارک یا باشگاه.</p>
 			<div class="actions">
 				<a class="btn btn-cta btn-lg" href="<?php echo esc_url( $course_url ); ?>">دوره «<?php echo esc_html( $course_name ); ?>»<?php sepehr_icon( 'arrow', 20 ); ?></a>
-				<a class="btn btn-outline btn-lg" href="#class">کلاس حضوری تهران</a>
+				<a class="btn btn-outline btn-lg" href="<?php echo esc_url( $class_url ); ?>">کلاس حضوری تهران</a>
 			</div>
 			<ul class="ticks">
 				<li><?php sepehr_icon( 'check', 18 ); ?>مناسب مبتدی تا پیشرفته</li>
@@ -68,13 +68,13 @@ $tg          = sepehr_fact( 'telegram' );
 	<section class="shell section" aria-labelledby="paths-title">
 		<h2 id="paths-title">دوره آنلاین یا کلاس حضوری کلیستنیکس؟</h2>
 		<div class="grid-2 paths">
-			<a class="path-card path-card--gold" href="#course">
+			<a class="path-card path-card--gold" href="<?php echo esc_url( $course_url ); ?>">
 				<span class="kicker">آنلاین · هر جای ایران</span>
 				<span class="path-title"><?php echo esc_html( 'دوره ' . $course_name ); ?></span>
 				<span class="path-text">برنامه‌ی کامل از صفر تا پیشرفته، با ویدیوی آموزشی هر حرکت و پشتیبانی مستقیم. هم برای آقایون، هم برای خانم‌ها.</span>
 				<span class="path-more gold">مشاهده دوره ←</span>
 			</a>
-			<a class="path-card" href="#class">
+			<a class="path-card" href="<?php echo esc_url( $class_url ); ?>">
 				<span class="kicker muted">حضوری · تهران، اوین</span>
 				<span class="path-title">کلاس کلیستنیکس حضوری در تهران</span>
 				<span class="path-text">تمرین زیر نظر مستقیم مربی؛ سانس استاندارد و سانس پریمیوم با برنامه‌ی شخصی‌سازی‌شده. ویژه‌ی آقایون.</span>
@@ -156,7 +156,7 @@ $tg          = sepehr_fact( 'telegram' );
 				<address class="addr"><?php sepehr_icon( 'pin' ); ?><span><?php echo esc_html( $address ); ?></span></address>
 				<div class="actions">
 					<a class="btn btn-cta" href="tel:<?php echo esc_attr( $phone_e164 ); ?>"><?php sepehr_icon( 'phone', 20 ); ?><?php echo esc_html( 'رزرو و ثبت‌نام: ' . $phone ); ?></a>
-					<a class="btn btn-ghost" href="<?php echo esc_url( $map_url ); ?>" target="_blank" rel="noopener">مسیریابی</a>
+					<a class="btn btn-ghost" href="<?php echo esc_url( $class_url ); ?>">جزئیات کلاس و پیش‌ثبت‌نام</a>
 				</div>
 			</div>
 			<div class="sessions">

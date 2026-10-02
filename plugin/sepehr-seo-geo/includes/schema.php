@@ -73,7 +73,7 @@ function sepehr_schema_gym() {
 		'@id'                       => sepehr_schema_id( 'class' ),
 		'name'                      => 'کلاس کلیستنیکس ' . $f['person_name'] . ' (اوین، تهران)',
 		'description'               => sprintf( 'کلاس کلیستنیکس حضوری در اوین تهران، ویژه %s، با سانس استاندارد و سانس پریمیوم با برنامه شخصی‌سازی‌شده؛ نزدیک به %s.', $f['class_audience'], $f['nearby'] ),
-		'url'                       => home_url( '/#class' ),
+		'url'                       => sepehr_page_url( 'class' ),
 		'telephone'                 => $f['phone_e164'],
 		'address'                   => array(
 			'@type'           => 'PostalAddress',
@@ -92,10 +92,7 @@ function sepehr_schema_gym() {
 	if ( ! empty( $f['geo']['lat'] ) && ! empty( $f['geo']['lng'] ) ) {
 		$node['geo'] = array( '@type' => 'GeoCoordinates', 'latitude' => $f['geo']['lat'], 'longitude' => $f['geo']['lng'] );
 	}
-	$map = get_theme_mod( 'sepehr_map_url', '' );
-	if ( $map ) {
-		$node['hasMap'] = esc_url_raw( $map );
-	}
+	$node['hasMap'] = esc_url_raw( sepehr_map_url() );
 	$image = sepehr_schema_image_url( 'sepehr_class_image' ) ?: sepehr_schema_image_url( 'sepehr_hero_image' );
 	if ( $image ) {
 		$node['image'] = $image;
@@ -189,7 +186,7 @@ if ( defined( 'RANK_MATH_VERSION' ) || class_exists( 'RankMath' ) ) {
 		}
 		$data['publisher'] = sepehr_schema_person();
 
-		if ( is_front_page() ) {
+		if ( is_front_page() || sepehr_current_page_key() ) {
 			// Generic nodes Rank Math adds to the home page that misdescribe it.
 			unset( $data['richSnippet'], $data['place'] );
 			$data['sepehrClass']  = sepehr_schema_gym();
@@ -214,7 +211,7 @@ if ( defined( 'RANK_MATH_VERSION' ) || class_exists( 'RankMath' ) ) {
 			),
 			sepehr_schema_person(),
 		);
-		if ( is_front_page() ) {
+		if ( is_front_page() || sepehr_current_page_key() ) {
 			$graph[] = sepehr_schema_gym();
 			$graph[] = sepehr_schema_course();
 		}

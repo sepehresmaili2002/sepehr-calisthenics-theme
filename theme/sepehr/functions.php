@@ -7,11 +7,12 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'SEPEHR_VERSION', '1.0.5' );
+define( 'SEPEHR_VERSION', '1.1.0' );
 
 require_once __DIR__ . '/inc/settings.php';
 require_once __DIR__ . '/inc/customizer.php';
 require_once __DIR__ . '/inc/template-tags.php';
+require_once __DIR__ . '/inc/reviews.php';
 
 add_action( 'after_setup_theme', function () {
 	load_theme_textdomain( 'sepehr', get_template_directory() . '/languages' );
@@ -70,9 +71,15 @@ add_action( 'wp_head', function () {
 	}
 	printf( '<meta name="theme-color" content="%s">' . "\n", '#0E0E10' );
 
-	// Front page: start downloading the hero photo (the LCP element) right away.
-	$hero = absint( get_theme_mod( 'sepehr_hero_image', 0 ) );
-	if ( is_front_page() && $hero && wp_attachment_is_image( $hero ) ) {
+	// Start downloading the hero photo (the LCP element) right away.
+	$hero_mod = '';
+	if ( is_front_page() ) {
+		$hero_mod = 'sepehr_hero_image';
+	} elseif ( function_exists( 'sepehr_current_page_key' ) && sepehr_current_page_key() ) {
+		$hero_mod = 'sepehr_' . sepehr_current_page_key() . '_hero_image';
+	}
+	$hero = $hero_mod ? absint( get_theme_mod( $hero_mod, 0 ) ) : 0;
+	if ( $hero && wp_attachment_is_image( $hero ) ) {
 		$src    = wp_get_attachment_image_url( $hero, 'sepehr-hero' );
 		$srcset = wp_get_attachment_image_srcset( $hero, 'sepehr-hero' );
 		if ( $src ) {

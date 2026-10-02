@@ -32,7 +32,9 @@ add_action( 'customize_register', function ( WP_Customize_Manager $wp_customize 
 	$images = array(
 		'sepehr_hero_image'  => __( 'عکس اصلی بالای صفحه (عمودی، حداقل ۹۰۰×۱۱۰۰)', 'sepehr' ),
 		'sepehr_coach_image' => __( 'پرتره مربی', 'sepehr' ),
-		'sepehr_class_image' => __( 'عکس کلاس حضوری', 'sepehr' ),
+		'sepehr_class_image' => __( 'عکس کلاس حضوری (صفحه اصلی)', 'sepehr' ),
+		'sepehr_class_hero_image'  => __( 'عکس بالای صفحه «کلاس حضوری تهران»', 'sepehr' ),
+		'sepehr_course_hero_image' => __( 'عکس بالای صفحه «دوره آنلاین»', 'sepehr' ),
 	);
 	foreach ( $images as $id => $label ) {
 		$wp_customize->add_setting( $id, array( 'default' => 0, 'sanitize_callback' => 'absint' ) );

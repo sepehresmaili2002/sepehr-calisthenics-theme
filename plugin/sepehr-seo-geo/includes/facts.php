@@ -31,6 +31,8 @@ function sepehr_facts() {
 		'phone_e164'      => '+989964949734',
 		'instagram'       => 'sepehr_esmaeily',
 		'telegram'        => 'sepehr_calisthenics',
+		// Registration and support contact (classes and course).
+		'support_telegram' => 'poshtiban_calis',
 
 		'street'          => 'اوین، خیابان کچویی، پلاک ۲۱',
 		'city'            => 'تهران',
@@ -38,8 +40,8 @@ function sepehr_facts() {
 		'country'         => 'IR',
 		'address_display' => 'تهران، اوین، خیابان کچویی، پلاک ۲۱',
 		'nearby'          => 'سعادت‌آباد، شهرک غرب، ولنجک و غرب تهران',
-		// Fill in once known (from Google Maps / Neshan) so maps and AI answers can place the class.
-		'geo'             => array( 'lat' => null, 'lng' => null ),
+		'geo'             => array( 'lat' => 35.79443181434779, 'lng' => 51.39222044840324 ),
+		'map_url'         => 'https://nshn.ir/c5_bvvaUNxOBs5',
 
 		'course_name'     => 'نقشه راه ساخت بدن با کلیستنیکس',
 		'course_audience' => 'آقایان و بانوان',
@@ -102,5 +104,13 @@ function sepehr_course_price() {
  */
 function sepehr_course_url() {
 	$url = trim( (string) get_theme_mod( 'sepehr_course_url', '' ) );
-	return '' !== $url ? $url : home_url( '/#course' );
+	return '' !== $url ? $url : sepehr_page_url( 'course' );
+}
+
+/**
+ * Directions link: Customizer value, else the Neshan link from the facts.
+ */
+function sepehr_map_url() {
+	$url = trim( (string) get_theme_mod( 'sepehr_map_url', '' ) );
+	return '' !== $url ? $url : sepehr_facts()['map_url'];
 }

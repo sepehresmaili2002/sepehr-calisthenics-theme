@@ -87,6 +87,44 @@ function sepehr_price_label() {
 }
 
 /**
+ * Pre-registration form (handled by the Sepehr SEO & GEO plugin).
+ *
+ * @param string $interest course|class|free
+ * @param string $button
+ */
+function sepehr_lead_form( $interest, $button = 'ثبت پیش‌ثبت‌نام' ) {
+	if ( ! function_exists( 'sepehr_handle_lead' ) ) {
+		return;
+	}
+	$status = isset( $_GET['lead'] ) ? sanitize_key( wp_unslash( $_GET['lead'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- display only.
+	$notes  = array(
+		'ok'    => array( 'success', 'ثبت شد! به‌زودی با همین شماره باهات تماس می‌گیریم.' ),
+		'phone' => array( 'error', 'شماره موبایل درست نیست. مثلاً: ۰۹۱۲۳۴۵۶۷۸۹' ),
+		'limit' => array( 'error', 'درخواست‌های زیادی ثبت شده؛ لطفاً کمی بعد دوباره امتحان کن یا تماس بگیر.' ),
+	);
+	?>
+	<form id="lead-form" class="lead-form-box" method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
+		<?php if ( isset( $notes[ $status ] ) ) : ?>
+			<p class="notice notice--<?php echo esc_attr( $notes[ $status ][0] ); ?>" role="status"><?php echo esc_html( $notes[ $status ][1] ); ?></p>
+		<?php endif; ?>
+		<input type="hidden" name="action" value="sepehr_lead">
+		<input type="hidden" name="interest" value="<?php echo esc_attr( $interest ); ?>">
+		<input type="hidden" name="ts" value="<?php echo esc_attr( time() ); ?>">
+		<div class="hp" aria-hidden="true"><label>وب‌سایت <input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+		<div class="field">
+			<label for="lead-name-<?php echo esc_attr( $interest ); ?>">اسم</label>
+			<input id="lead-name-<?php echo esc_attr( $interest ); ?>" type="text" name="lead_name" autocomplete="given-name" placeholder="مثلاً: علی">
+		</div>
+		<div class="field">
+			<label for="lead-phone-<?php echo esc_attr( $interest ); ?>">شماره موبایل <span class="req">*</span></label>
+			<input id="lead-phone-<?php echo esc_attr( $interest ); ?>" type="tel" name="phone" required inputmode="tel" autocomplete="tel" dir="ltr" placeholder="09123456789">
+		</div>
+		<button class="btn btn-cta btn-lg" type="submit"><?php echo esc_html( $button ); ?></button>
+	</form>
+	<?php
+}
+
+/**
  * Visible "last updated" line — freshness is a signal AI answers look for.
  */
 function sepehr_updated_line() {

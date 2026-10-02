@@ -71,7 +71,7 @@ function sepehr_llms_txt() {
 	$out[] = '- سه مسیر: بدنسازی با کلیستنیکس، بدنسازی در خانه بدون وسیله، کلیستنیکس ترکیبی با وزنه.';
 	$out[] = '- شامل: ویدیوی آموزشی هر حرکت، برنامه غذایی متناسب با هدف، پشتیبانی.';
 	$out[] = '- قیمت: ' . ( null === $price ? 'به‌زودی اعلام می‌شود' : number_format( $price ) . ' تومان' );
-	$out[] = '- لینک: ' . sepehr_course_url();
+	$out[] = '- پیش‌ثبت‌نام و جزئیات: ' . sepehr_course_url();
 	$out[] = '';
 	$out[] = '## کلاس کلیستنیکس حضوری در تهران';
 	$out[] = '- آدرس: ' . $f['address_display'] . ' (نزدیک به ' . $f['nearby'] . ')';
@@ -79,12 +79,14 @@ function sepehr_llms_txt() {
 		$out[] = sprintf( '- %s (%s): %s، %s', $s['name'], $s['label'], $s['days_label'], $s['time_label'] );
 	}
 	$out[] = '- ویژه ' . $f['class_audience'] . '. رزرو و ثبت‌نام: ' . $f['phone_display'] . ' (' . $f['phone_e164'] . ')';
+	$out[] = '- تلگرام ثبت‌نام و پشتیبانی: @' . $f['support_telegram'];
+	$out[] = '- مسیریابی (نشان): ' . sepehr_map_url();
 	$out[] = '';
 	$out[] = '## لینک‌ها';
 	$out[] = '- [صفحه اصلی](' . $home . ')';
 	$out[] = '- [کلیستنیکس چیست؟](' . $home . '#what)';
 	$out[] = '- [دوره آنلاین](' . sepehr_course_url() . ')';
-	$out[] = '- [کلاس حضوری تهران](' . $home . '#class)';
+	$out[] = '- [کلاس کلیستنیکس حضوری در تهران](' . sepehr_page_url( 'class' ) . ')';
 	$out[] = '- [درباره مربی](' . $home . '#coach)';
 	if ( $f['instagram'] ) {
 		$out[] = '- [اینستاگرام](https://www.instagram.com/' . $f['instagram'] . '/)';
